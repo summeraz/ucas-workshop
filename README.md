@@ -1,4 +1,4 @@
-# Workshop - Theoretical and Computational Chemistry: Modeling Methods in Chemical Engineering
+# Theoretical and Computational Chemistry: Modeling Methods in Chemical Engineering - Workshop
 
 This repository contains the material required for the workshop portion of the
 "Theoretical and Computational Chemistry: Modeling Methods in Chemical Engineering"

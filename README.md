@@ -4,12 +4,12 @@ This repository contains the material required for the workshop portion of the
 "Theoretical and Computational Chemistry: Modeling Methods in Chemical Engineering"
 course at the University of Chinese Academy of Sciences.
 
-## Day 1: Lesson Name
+## Session 1: MoSDeF Tutorial
 
-## Day 2: Lesson Name
+## Session 2: Molecular Dynamics (Lennard-Jones system)
 
-## Day 3: Lesson Name
+## Session 3: Molecular Dynamics (Atomistic)
 
-## Day 4: Lesson Name
+## Session 4: Monte Carlo
 
-## Day 5: Lesson Name
+## Session 5: Non-equilibrium Molecular Dynamics

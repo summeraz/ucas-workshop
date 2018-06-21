@@ -19,6 +19,9 @@ class LJBox(mb.Compound):
         box_length = (n / density) ** (1 / 3)
         box = mb.Box(lengths=np.ones(3) * box_length)
 
+        print("Creating box ({:.4f} x {:.4f} x {:.4f}) containing {} particles at a "
+              "number density of {}.".format(*box.lengths, n, density))
+
         particles_per_len = round(n ** (1 / 3))
         pattern = mb.Grid3DPattern(particles_per_len, particles_per_len,
                                    particles_per_len)

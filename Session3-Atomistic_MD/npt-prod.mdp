@@ -6,8 +6,8 @@ integrator               = md
 ; Timestep of 2fs (0.002ps)
 dt                       = 0.002
 
-; Run for 10000 timesteps (20ps)
-nsteps                   = 10000
+; Run for 125000 timesteps (250ps)
+nsteps                   = 125000
 
 ; Remove center of mass translation every 100 steps
 comm-mode                = Linear

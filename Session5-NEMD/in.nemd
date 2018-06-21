@@ -1,0 +1,102 @@
+# Define variables
+variable        temperature equal 298.15
+variable	    srate equal ${STRAINRATE}
+variable        seed equal 12345
+
+# Use real units (Distance: angstroms, Time: femtoseconds, Energy: kcal/mol)
+units		    real
+
+# Define atom style (Full: bonds, angles, dihedrals, and charges)
+atom_style	    full
+
+# Define neighborlist params
+neighbor        2.5 bin
+neigh_modify    delay 5 every 1
+
+# Define potential functional forms
+pair_style      lj/cut/coul/long 11.0
+bond_style      harmonic
+angle_style     harmonic
+dihedral_style  opls
+
+# Set scaling of nonbonded interactions for 1-4 neighbors to 0.5
+special_bonds   lj/coul 0 0 0.5
+
+# Load system
+read_data       alkanes.lammps
+
+# Shift the LJ potential to 0 at the cutoff
+pair_modify     shift yes
+
+# Convert box to triclinic (allows us to deform the box during NEMD stage)
+change_box      all triclinic
+
+# Setup long-range electrostatics
+kspace_style    pppm 1.0e-4
+
+# Initialize velocities
+velocity        all create ${temperature} ${seed} dist gaussian
+
+# Energy minimization
+minimize        1.0e-4 1.0e-6 100 1000
+
+# Constrain C-H bonds and H-C-H angles (permits a larger timestep)
+fix             constr all shake 0.0001 20 1000 b 1 a 3
+
+# ===========
+# Equilibrate
+# ===========
+
+# Langevin-thermostatted NVT (here broken into two commands)
+fix             1 all nve
+fix	            2 all langevin ${temperature} ${temperature} 100 ${seed}
+
+# Use a 2fs timestep (possible due to H-bond constraints)
+timestep        2.0
+
+# Dump coordinates to a file every 1ps
+dump            1 all xtc 500 equilibrate.xtc
+
+# Dump thermodynamics output every 1ps
+thermo          500
+
+# Run equilibration for 250ps
+run	            125000
+
+# Remove integrators and dump commands
+unfix  	        1
+unfix		    2
+undump          1
+
+# ====
+# NEMD
+# ====
+
+# Scale velocities to the desired temperature
+velocity	    all scale ${temperature}
+
+# Compute viscosity to output during the simulation
+variable	    viscosity equal -pxy/(v_srate)
+fix		        vave all ave/time 5 10 50 v_viscosity ave running
+
+# Set up NVT integration using SLLOD equations of motion
+fix		        1 all nvt/sllod temp ${temperature} ${temperature} 100
+
+# Deform the box based on the desired strain rate
+fix             2 all deform 1 xy erate ${srate} remap v
+
+# Dump coordinates to a file every 1ps
+dump            1 all xtc 500 nemd.xtc
+
+# Compute what the temperature would be without correcting for added velocities
+compute		    usual all temp
+
+# Compute the actual temperature
+compute		    tilt all temp/deform
+
+# Define output to be written to the log file
+thermo_style	custom step temp c_usual epair etotal press pxy v_viscosity f_vave
+thermo_modify	temp tilt
+
+# Run for 5ns
+run		        2500000

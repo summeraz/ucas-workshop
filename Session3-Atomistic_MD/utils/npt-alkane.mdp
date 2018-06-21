@@ -3,11 +3,14 @@
 ; Leap-frog algorithm
 integrator               = md
 
+; Constrain C-H bonds
+constraints              = h-bonds
+
 ; Timestep of 2fs (0.002ps)
 dt                       = 0.002
 
-; Run for 10000 timesteps (20ps)
-nsteps                   = 10000
+; Run for 50000 timesteps (100ps)
+nsteps                   = 50000
 
 ; Remove center of mass translation every 100 steps
 comm-mode                = Linear
@@ -74,7 +77,7 @@ tau_t                    = 0.1
 ; Use a reference temperature of 298.15K
 ref_t                    = 298.15
 
-; Use the Berendsen barostat (for equilibration only!)
+; Use the Berendsen barostat
 Pcoupl                   = Berendsen
 
 ; Use isotropic pressure coupling

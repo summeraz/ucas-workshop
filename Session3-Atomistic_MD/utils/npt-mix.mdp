@@ -1,0 +1,99 @@
+; RUN CONTROL PARAMETERS
+
+; Leap-frog algorithm
+integrator               = md
+
+; Constrain C-H bonds
+constraints              = h-bonds
+
+; Timestep of 2fs (0.002ps)
+dt                       = 0.002
+
+; Run for 50000 timesteps (100ps)
+nsteps                   = 50000
+
+; Remove center of mass translation every 100 steps
+comm-mode                = Linear
+nstcomm                  = 100
+
+
+; OUTPUT CONTROL OPTIONS
+
+; Output energies to log file and energy file every 50 steps
+nstlog                   = 50
+nstenergy                = 50
+
+; Output coordinates (using lossy compression) to file every 50 steps
+nstxtcout                = 50
+
+
+; NEIGHBORSEARCHING PARAMETERS
+
+; Use a Verlet neighborlist
+cutoff-scheme            = Verlet
+
+; Update the neighborlist every 10 steps
+nstlist                  = 10
+
+; Use the "grid" neighborlist algorithm
+ns_type                  = grid
+
+; Periodic boundary conditions: xyz
+pbc                      = xyz
+
+; Cut-off the neighborlist (cutoff (0.9) + skin (0.25))
+verlet-buffer-tolerance  = -1
+rlist                    = 1.15
+
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+
+; Use particle mesh ewald algorithm for electrostatics
+coulombtype              = PME
+
+; Cut-off short range Coulomb potential at 0.9nm
+rcoulomb                 = 0.9
+
+; Use a cutoff of 0.9nm for VDW interactions
+vdw-type                 = Cut-off
+rvdw                     = 0.9
+
+; Shift the potential to 0 at the cutoff 
+vdw-modifier             = Potential-shift-Verlet
+
+
+; THERMOSTATTING AND BAROSTATTING
+
+; Use the v-rescale thermostat (JCP 126, 014101)
+; Similar to Berendsen, but ensures proper ensemble generation
+Tcoupl                   = v-rescale
+
+; Couple the heat bath to the entire system
+tc-grps                  = System
+
+; Time constant for temperature coupling (0.1ps)
+tau_t                    = 0.1
+
+; Use a reference temperature of 298.15K
+ref_t                    = 298.15
+
+; Use the Berendsen barostat
+Pcoupl                   = Berendsen
+
+; Use isotropic pressure coupling
+Pcoupltype               = isotropic
+
+; Time constant for pressure coupling (0.5ps)
+tau_p                    = 0.5
+
+; Compressibility (4.5e-5 inverse bar for H20 at 1atm and 300K)
+compressibility          = 4.5e-5
+
+; Use a reference pressure of 1bar
+ref_p                    = 1.0
+
+
+; GENERATE VELOCITIES FOR STARTUP RUN
+gen_vel                  = yes
+gen_temp                 = 298.15
+gen_seed                 = 12345

@@ -6,8 +6,8 @@ integrator               = md
 ; Timestep of 2fs (0.002ps)
 dt                       = 0.002
 
-; Run for 125000 timesteps (250ps)
-nsteps                   = 125000
+; Run for 50000 timesteps (100ps)
+nsteps                   = 50000
 
 ; Remove center of mass translation every 100 steps
 comm-mode                = Linear
@@ -74,8 +74,8 @@ tau_t                    = 0.1
 ; Use a reference temperature of 298.15K
 ref_t                    = 298.15
 
-; Use the Parrinello-Rahman barostat
-Pcoupl                   = Parrinello-Rahman
+; Use the Berendsen barostat
+Pcoupl                   = Berendsen
 
 ; Use isotropic pressure coupling
 Pcoupltype               = isotropic
@@ -91,6 +91,6 @@ ref_p                    = 1.0
 
 
 ; GENERATE VELOCITIES FOR STARTUP RUN
-gen_vel                  = no
+gen_vel                  = yes
 gen_temp                 = 298.15
 gen_seed                 = 12345

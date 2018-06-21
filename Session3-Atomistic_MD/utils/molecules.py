@@ -1,17 +1,7 @@
 import mbuild as mb
+from mbuild.lib.moieties import CH2
+from mbuild.lib.atoms import H
 
-class CH2(mb.Compound):
-    def __init__(self):
-        super(CH2, self).__init__()
-        mb.load('ch2.pdb', compound=self)
-        self.add(mb.Port(anchor=self[0], orientation=[0, 1, 0], separation=0.07), 'up')
-        self.add(mb.Port(anchor=self[0], orientation=[0, -1, 0], separation=0.07), 'down')
-
-class Hydrogen(mb.Compound):
-    def __init__(self):
-        super(Hydrogen, self).__init__()
-        self.add(mb.Compound(name='H'))
-        self.add(mb.Port(anchor=self[0], orientation=[0, 1, 0], separation=0.07), 'up')
 
 class Alkane(mb.Compound):
     """An alkane chain of a user-defined length."""
@@ -34,13 +24,13 @@ class Alkane(mb.Compound):
         self.add(chain, 'chain')
         
         # Cap one end of the polymer with a hydrogen
-        self.add(Hydrogen(), 'up_cap')
+        self.add(H(), 'up_cap')
         mb.force_overlap(move_this=self['up_cap'],
                          from_positions=self['up_cap']['up'],
                          to_positions=self['chain']['up'])
         
         # Cap the other end of the polymer with a hydrogen
-        self.add(Hydrogen(), 'down_cap')
+        self.add(H(), 'down_cap')
         mb.force_overlap(move_this=self['down_cap'],
                          from_positions=self['down_cap']['up'],
                          to_positions=self['chain']['down'])

@@ -1,0 +1,22 @@
+<ForceField>
+ <AtomTypes>
+  <Type name="heinz_Ag" class="" element="Ag" mass="107.8682" def="Ag" desc="Silver atom" doi="10.1021/jp801931d"/>
+  <Type name="heinz_Al" class="" element="Al" mass="26.981539" def="Al" desc="" doi="10.1021/jp801931d"/>
+  <Type name="heinz_Au" class="" element="Au" mass="196.96657" def="Au" desc="Gold atom" doi="10.1021/jp801931d"/>
+  <Type name="heinz_Cu" class="" element="Cu" mass="63.546" def="Cu" desc="" doi="10.1021/jp801931d"/>
+  <Type name="heinz_Ni" class="" element="Ni" mass="58.6934" def="Ni" desc="" doi="10.1021/jp801931d"/>
+  <Type name="heinz_Pb" class="" element="Pb" mass="207.2" def="Pb" desc="" doi="10.1021/jp801931d"/>
+  <Type name="heinz_Pd" class="" element="Pd" mass="106.42" def="Pd" desc="" doi="10.1021/jp801931d"/>
+  <Type name="heinz_Pt" class="" element="Pt" mass="195.084" def="Pt" desc="" doi="10.1021/jp801931d"/>
+ </AtomTypes>
+ <NonbondedForce coulomb14scale="0.5" lj14scale="0.5">
+  <Atom type="heinz_Ag" charge="0" sigma="0.2955" epsilon="19.07904"/>
+  <Atom type="heinz_Al" charge="0" sigma="0.2925" epsilon="16.81968"/>
+  <Atom type="heinz_Au" charge="0" sigma="0.2951" epsilon="22.13336"/>
+  <Atom type="heinz_Cu" charge="0" sigma="0.2616" epsilon="19.74848"/>
+  <Atom type="heinz_Ni" charge="0" sigma="0.2552" epsilon="23.6396"/>
+  <Atom type="heinz_Pb" charge="0" sigma="0.3565" epsilon="12.25912"/>
+  <Atom type="heinz_Pd" charge="0" sigma="0.2819" epsilon="25.7316"/>
+  <Atom type="heinz_Pt" charge="0" sigma="0.2845" epsilon="32.6352"/>
+ </NonbondedForce>
+</ForceField>

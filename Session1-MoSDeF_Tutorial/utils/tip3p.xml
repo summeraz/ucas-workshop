@@ -1,0 +1,16 @@
+<ForceField>
+ <AtomTypes>
+  <Type name="O" class="O" element="O" mass="15.99940" def="O" desc="Oxygen in TIP3P water"/>
+  <Type name="H" class="H" element="H" mass="1.00800" def="H" desc="Hydrogen in TIP3P water"/>
+ </AtomTypes>
+ <HarmonicBondForce>
+  <Bond class1="O" class2="H" length="0.09572" k="502080.0"/>
+ </HarmonicBondForce>
+ <HarmonicAngleForce>
+  <Angle class1="H" class2="O" class3="H" angle="1.82422" k="627.6"/>
+ </HarmonicAngleForce>
+ <NonbondedForce coulomb14scale="0.5" lj14scale="0.5">
+  <Atom type="O" charge="-0.834" sigma="0.315066" epsilon="0.63627"/>
+  <Atom type="H" charge="0.417" sigma="1.0" epsilon="0.0"/>
+ </NonbondedForce>
+</ForceField>

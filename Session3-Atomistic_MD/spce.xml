@@ -1,0 +1,16 @@
+<ForceField>
+  <AtomTypes>
+    <Type name="OW" class="OW" element="O" mass="15.999" def="O" desc="O"/>
+    <Type name="HW" class="HW" element="H" mass="1.008" def="H" desc="H"/>
+  </AtomTypes>
+  <HarmonicBondForce>
+    <Bond class1="OW" class2="HW" length="0.1" k="400000.0"/>
+  </HarmonicBondForce>
+  <HarmonicAngleForce>
+    <Angle class1="HW" class2="OW" class3="HW" angle="1.91061" k="1000.0"/>
+  </HarmonicAngleForce>
+  <NonbondedForce coulomb14scale="1.0" lj14scale="1.0">
+    <Atom type="OW" charge="-0.8476" sigma="0.3166" epsilon="0.65"/>
+    <Atom type="HW" charge="0.4238" sigma="1.0" epsilon="0.0"/>
+  </NonbondedForce>
+</ForceField>
